@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETTER PRICE</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-weight: bold;">BETTER PRICE</h1>
+
+    <form method="POST">
+        <label for="product_name">Product Name: </label>
+        <input type="text" id="product_name" name="product_name">
+        <br>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if product_data %}
+        <table>
+            <tr>
+                <th></th>
+                <th>Flipkart</th>
+                <th>Amazon</th>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><img src="{{ product_data['Flipkart'].img_url }}" alt="{{ product_data['Flipkart'].product_name }}"></td>
+                <td><img src="{{ product_data['Amazon'].img_url }}" alt="{{ product_data['Amazon'].product_name }}"></td>
+            </tr>
+            <tr>
+                <td>Product Name</td>
+                <td>{{ product_data['Flipkart'].product_name }}</td>
+                <td>{{ product_data['Amazon'].product_name }}</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>{{ product_data['Flipkart'].price }}</td>
+                <td>{{ product_data['Amazon'].price }}</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>{{ product_data['Flipkart'].rating }}</td>
+                <td>{{ product_data['Amazon'].rating }}</td>
+            </tr>
+            <tr>
+                <td>Review</td>
+                <td>{{ product_data['Flipkart'].review_counts }}</td>
+                <td>{{ product_data['Amazon'].review_counts }}</td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
